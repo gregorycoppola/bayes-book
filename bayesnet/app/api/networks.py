@@ -1,12 +1,30 @@
 # app/api/networks.py
-from fastapi import APIRouter
+from fastapi import APIRouter, HTTPException
 from app.models.bayesnet import BayesianNetwork
+from app.storage.in_memory import save_network, get_network, list_networks
 
 router = APIRouter()
 
-@router.post("/")
-async def upload_network(network: BayesianNetwork):
+
+@router.post("/{name}")
+async def upload_network(name: str, network: BayesianNetwork):
+    await save_network(name, network)
     return {
-        "message": f"Received network '{network.name or 'unnamed'}'",
+        "message": f"Stored network '{name}'",
         "node_count": len(network.nodes)
     }
+
+
+@router.get("/{name}")
+async def get_network_by_name(name: str):
+    try:
+        network = await get_network(name)
+        return network
+    except KeyError:
+        raise HTTPException(status_code=404, detail=f"Network '{name}' not found")
+
+
+@router.get("/")
+async def list_all_networks():
+    names = await list_networks()
+    return {"networks": names}
