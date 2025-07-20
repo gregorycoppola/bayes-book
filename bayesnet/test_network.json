@@ -1,0 +1,14 @@
+{
+  "name": "Test Network",
+  "nodes": [
+    {
+      "name": "A",
+      "domain": ["true", "false"],
+      "parents": [],
+      "cpt": {
+        "true": [{ "parent_values": {}, "probability": 0.6 }],
+        "false": [{ "parent_values": {}, "probability": 0.4 }]
+      }
+    }
+  ]
+}
