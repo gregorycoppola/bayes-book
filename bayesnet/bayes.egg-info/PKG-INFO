@@ -1,0 +1,11 @@
+Metadata-Version: 2.4
+Name: bayes
+Version: 0.1.0
+Summary: Bayesian Network CLI and REST server
+Requires-Python: >=3.9
+Requires-Dist: fastapi
+Requires-Dist: uvicorn
+Requires-Dist: redis
+Requires-Dist: click
+Requires-Dist: requests
+Requires-Dist: pydantic

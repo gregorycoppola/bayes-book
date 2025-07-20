@@ -1,0 +1,2 @@
+[console_scripts]
+bayes = cli.main:cli

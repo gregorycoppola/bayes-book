@@ -1,0 +1,19 @@
+[project]
+name = "bayes"
+version = "0.1.0"
+description = "Bayesian Network CLI and REST server"
+dependencies = [
+    "fastapi",
+    "uvicorn",
+    "redis",
+    "click",
+    "requests",
+    "pydantic"
+]
+requires-python = ">=3.9"
+
+[project.scripts]
+bayes = "cli.main:cli"
+
+[tool.setuptools]
+packages = ["app", "cli"]
