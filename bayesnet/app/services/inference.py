@@ -1,7 +1,7 @@
 # app/services/inference.py
-from app.models.bayesnet import BayesianNetwork
 from collections import defaultdict
 from typing import Dict, List
+from app.models.bayesnet import BayesianNetwork, VariableNode
 
 
 def query(network: BayesianNetwork, evidence: dict, query_var: str) -> dict:
