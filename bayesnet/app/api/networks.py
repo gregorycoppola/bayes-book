@@ -1,7 +1,8 @@
 # app/api/networks.py
-from fastapi import APIRouter, HTTPException
+from fastapi import APIRouter, HTTPException, Body
 from app.models.bayesnet import BayesianNetwork
 from app.storage.in_memory import save_network, get_network, list_networks
+from app.services.inference import compute_beliefs_loopy_bp
 
 router = APIRouter()
 
