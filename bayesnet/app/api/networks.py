@@ -28,3 +28,16 @@ async def get_network_by_name(name: str):
 async def list_all_networks():
     names = await list_networks()
     return {"networks": names}
+
+@router.post("/{name}/infer")
+async def infer_network(name: str, payload: dict = Body(...)):
+    try:
+        network = await get_network(name)
+    except KeyError:
+        raise HTTPException(status_code=404, detail=f"Network '{name}' not found")
+
+    evidence = payload.get("evidence", {})
+    iterations = payload.get("iterations", 10)
+
+    result = compute_beliefs_loopy_bp(network, evidence, iterations)
+    return result

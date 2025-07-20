@@ -1,3 +1,10 @@
+#!/bin/bash
+set -e
+
+echo "🔄 Resetting test environment..."
+
+# Create a simple test network JSON
+cat > test_network.json <<EOF
 {
   "name": "Inference Test Network",
   "nodes": [
@@ -27,3 +34,18 @@
     }
   ]
 }
+EOF
+
+echo "📤 Uploading network..."
+bayes upload infernet test_network.json
+
+echo "📋 Listing networks..."
+bayes list
+
+echo "📥 Getting network..."
+bayes get infernet
+
+echo "🔍 Running inference with evidence A=true..."
+bayes infer infernet --evidence '{"A": "true"}' --iterations 5
+
+echo "✅ Inference test completed successfully."

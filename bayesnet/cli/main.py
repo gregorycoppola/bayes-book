@@ -43,3 +43,12 @@ def list_networks():
 
 if __name__ == "__main__":
     cli()
+
+@cli.command()
+@click.argument("name")
+@click.option("--evidence", help="JSON dict of evidence", required=True)
+@click.option("--iterations", default=10)
+def infer(name, evidence, iterations):
+    parsed = json.loads(evidence)
+    response = requests.post(f"{API_BASE}/{name}/infer", json={"evidence": parsed, "iterations": iterations})
+    click.echo(json.dumps(response.json(), indent=2))
