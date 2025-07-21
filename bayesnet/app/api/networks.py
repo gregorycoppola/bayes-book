@@ -42,3 +42,18 @@ async def infer_network(name: str, payload: dict = Body(...)):
 
     result = compute_beliefs_loopy_bp(network, evidence, iterations)
     return result
+
+@router.get("/{name}/graph")
+async def get_network_graph(name: str):
+    try:
+        network = await get_network(name)
+    except KeyError:
+        raise HTTPException(status_code=404, detail=f"Network '{name}' not found")
+
+    nodes = [{"id": node.name, "label": node.name} for node in network.nodes]
+    edges = []
+    for node in network.nodes:
+        for parent in node.parents:
+            edges.append({"from": parent, "to": node.name})
+
+    return {"nodes": nodes, "edges": edges}

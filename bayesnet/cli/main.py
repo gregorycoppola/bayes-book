@@ -52,3 +52,13 @@ def infer(name, evidence, iterations):
     parsed = json.loads(evidence)
     response = requests.post(f"{API_BASE}/{name}/infer", json={"evidence": parsed, "iterations": iterations})
     click.echo(json.dumps(response.json(), indent=2))
+
+@cli.command()
+@click.argument("name")
+def graph(name):
+    """Print the graph structure of a Bayesian Network."""
+    response = requests.get(f"{API_BASE}/{name}/graph")
+    if response.status_code == 404:
+        click.echo(f"❌ Network '{name}' not found.")
+    else:
+        click.echo(json.dumps(response.json(), indent=2))
