@@ -1,0 +1,60 @@
+{
+  "name": "Flu Diagnosis",
+  "nodes": [
+    {
+      "name": "Flu",
+      "domain": ["true", "false"],
+      "parents": [],
+      "cpt": {
+        "true": [{ "parent_values": {}, "probability": 0.1 }],
+        "false": [{ "parent_values": {}, "probability": 0.9 }]
+      }
+    },
+    {
+      "name": "Fever",
+      "domain": ["true", "false"],
+      "parents": ["Flu"],
+      "cpt": {
+        "true": [
+          { "parent_values": { "Flu": "true" }, "probability": 0.8 },
+          { "parent_values": { "Flu": "false" }, "probability": 0.1 }
+        ],
+        "false": [
+          { "parent_values": { "Flu": "true" }, "probability": 0.2 },
+          { "parent_values": { "Flu": "false" }, "probability": 0.9 }
+        ]
+      }
+    },
+    {
+      "name": "Cough",
+      "domain": ["true", "false"],
+      "parents": ["Flu"],
+      "cpt": {
+        "true": [
+          { "parent_values": { "Flu": "true" }, "probability": 0.7 },
+          { "parent_values": { "Flu": "false" }, "probability": 0.3 }
+        ],
+        "false": [
+          { "parent_values": { "Flu": "true" }, "probability": 0.3 },
+          { "parent_values": { "Flu": "false" }, "probability": 0.7 }
+        ]
+      }
+    },
+    {
+      "name": "PositiveTest",
+      "domain": ["true", "false"],
+      "parents": ["Flu"],
+      "cpt": {
+        "true": [
+          { "parent_values": { "Flu": "true" }, "probability": 0.95 },
+          { "parent_values": { "Flu": "false" }, "probability": 0.05 }
+        ],
+        "false": [
+          { "parent_values": { "Flu": "true" }, "probability": 0.05 },
+          { "parent_values": { "Flu": "false" }, "probability": 0.95 }
+        ]
+      }
+    }
+  ]
+}
+
