@@ -1,8 +1,9 @@
 'use client';
 
 import { useEffect, useRef, useState } from 'react';
-import { Network } from 'vis-network/standalone/esm/vis-network';
+import { Network } from 'vis-network'; // ✅ use default export path
 import 'vis-network/styles/vis-network.css';
+
 
 interface GraphData {
   nodes: { id: string; label: string }[];
@@ -21,7 +22,9 @@ export default function GraphViewer({ name }: GraphViewerProps) {
   useEffect(() => {
     const fetchGraph = async () => {
       try {
-        const res = await fetch(`/networks/${name}/graph`);
+        // const res = await fetch(`/networks/${name}/graph`);
+        const res = await fetch(`http://localhost:8000/networks/${name}/graph`);
+
         if (!res.ok) throw new Error(`HTTP ${res.status}`);
         const data: GraphData = await res.json();
         if (containerRef.current) {
