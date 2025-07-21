@@ -1,0 +1,57 @@
+{
+  "name": "Alarm Network",
+  "nodes": [
+    {
+      "name": "Burglary",
+      "domain": ["true", "false"],
+      "parents": [],
+      "cpt": {
+        "true": [{ "parent_values": {}, "probability": 0.001 }],
+        "false": [{ "parent_values": {}, "probability": 0.999 }]
+      }
+    },
+    {
+      "name": "Earthquake",
+      "domain": ["true", "false"],
+      "parents": [],
+      "cpt": {
+        "true": [{ "parent_values": {}, "probability": 0.002 }],
+        "false": [{ "parent_values": {}, "probability": 0.998 }]
+      }
+    },
+    {
+      "name": "Alarm",
+      "domain": ["true", "false"],
+      "parents": ["Burglary", "Earthquake"],
+      "cpt": {
+        "true": [
+          { "parent_values": { "Burglary": "true", "Earthquake": "true" }, "probability": 0.95 },
+          { "parent_values": { "Burglary": "true", "Earthquake": "false" }, "probability": 0.94 },
+          { "parent_values": { "Burglary": "false", "Earthquake": "true" }, "probability": 0.29 },
+          { "parent_values": { "Burglary": "false", "Earthquake": "false" }, "probability": 0.001 }
+        ],
+        "false": [
+          { "parent_values": { "Burglary": "true", "Earthquake": "true" }, "probability": 0.05 },
+          { "parent_values": { "Burglary": "true", "Earthquake": "false" }, "probability": 0.06 },
+          { "parent_values": { "Burglary": "false", "Earthquake": "true" }, "probability": 0.71 },
+          { "parent_values": { "Burglary": "false", "Earthquake": "false" }, "probability": 0.999 }
+        ]
+      }
+    },
+    {
+      "name": "JohnCalls",
+      "domain": ["true", "false"],
+      "parents": ["Alarm"],
+      "cpt": {
+        "true": [
+          { "parent_values": { "Alarm": "true" }, "probability": 0.9 },
+          { "parent_values": { "Alarm": "false" }, "probability": 0.05 }
+        ],
+        "false": [
+          { "parent_values": { "Alarm": "true" }, "probability": 0.1 },
+          { "parent_values": { "Alarm": "false" }, "probability": 0.95 }
+        ]
+      }
+    }
+  ]
+}
