@@ -1,19 +1,65 @@
 \documentclass[12pt]{book}
+
+% Packages
+\usepackage[utf8]{inputenc}
 \usepackage{lmodern}
+\usepackage{geometry}
 \usepackage{hyperref}
-\title{Bayesian Networks}
+\geometry{a4paper, margin=1in}
+
+% Metadata
+\title{Bayesian Networks: Principles and Practice}
 \author{Greg Coppola}
-\date{Published by coppola.ai}
+\date{\today}
+
+% Custom publisher command
+\newcommand{\publisher}{coppola.ai}
 
 \begin{document}
-\maketitle
-\frontmatter
-\chapter{Preface}
-This book introduces Bayesian Networks, their theory, applications, and implementation.
 
+% Title page
+\begin{titlepage}
+    \centering
+    {\Huge \bfseries Bayesian Networks: Principles and Practice \par}
+    \vspace{1.5cm}
+    {\Large Greg Coppola \par}
+    \vspace{2cm}
+    {\large \publisher \par}
+    \vfill
+    {\large \today \par}
+\end{titlepage}
+
+\frontmatter
 \tableofcontents
+
 \mainmatter
+
+\part{Fundamentals of Probabilistic Reasoning}
 \chapter{Introduction}
-% Start writing here
+\chapter{Probability Theory Refresher}
+\chapter{Graph Theory Basics}
+
+\part{Structure and Semantics of Bayesian Networks}
+\chapter{Defining Bayesian Networks}
+\chapter{Conditional Independence and d-Separation}
+\chapter{Canonical Examples}
+
+\part{Inference in Bayesian Networks}
+\chapter{Exact Inference Algorithms}
+\chapter{Approximate Inference}
+\chapter{Inference Complexity and Tradeoffs}
+
+\part{Learning Bayesian Networks from Data}
+\chapter{Parameter Learning}
+\chapter{Structure Learning}
+\chapter{Causal Discovery}
+
+\part{Advanced Topics and Applications}
+\chapter{Dynamic Bayesian Networks (DBNs)}
+\chapter{Continuous and Hybrid Models}
+\chapter{Decision Networks and Influence Diagrams}
+\chapter{Applications in the Wild}
+
+\backmatter
 
 \end{document}
